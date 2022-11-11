@@ -1,53 +1,44 @@
 <template>
-  <div class="watch-list">
-    <input type="text"
-    @keyup.enter="getMovies2"
-
-    v-model="searchInputName"
+  <div>
+    <div id="app">
+    <h1>보고싶은영화</h1>
+     <WatchListForm/>
+    <div>
+    <WatchListItem
+      v-for="(todo, index) in todos"
+      :key="index"
+      :todo="todo"
     />
-    <!-- {{ searchLists }} -->
-    <WatchListForm/>
-    <div v-for="searchList in searchLists" :key="searchList.id" @click="setVideo(searchList)">
-      <WatchListItem :searchList="searchList" />
     </div>
-    <div v-if="searchLists.length===0" >
-      <h1>잘못된 입력어</h1>
-    </div>
+  </div>
   </div>
 </template>
 
 <script>
 import WatchListForm from '@/components/WatchListForm'
 import WatchListItem from '@/components/WatchListItem'
-import { mapActions } from "vuex"
-
 
 export default {
   name: 'WatchListView',
-  data: function() {
-    return {
-      searchInputName: null,
-    }
-  },
-  components: {
+  components :{
     WatchListForm,
     WatchListItem
   },
-  methods: {
-    ...mapActions(["getMovies"]),
-    getMovies2() {
-      this.getMovies(this.searchInputName)
-      return this.searchInputName = null
+  computed: {
+    todos() {
+      return this.$store.state.todos
     }
   },
-  computed: {
-    searchLists() {
-      return this.$store.state.searchLists
-    }
-  }
 }
 </script>
 
 <style>
-
+  #app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+  }
 </style>

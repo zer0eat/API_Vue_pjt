@@ -4,16 +4,14 @@
       <router-link to="/">Home</router-link> |
       <router-link :to="{name: 'movies'}">MovieView</router-link> |
       <router-link :to="{name: 'random'}">RandomView</router-link> |
-      <router-link :to="{name: 'watch-list'}">WatchListView</router-link>
+      <router-link :to="{name: 'watch-list'}">WatchListView</router-link> |
+      <router-link :to="{name: 'search-list'}">SearchListView</router-link>
     </nav>
     <router-view/>
   </div>
 </template>
 
 <script>
-
-
-
 
 </script>
 

@@ -1,52 +1,37 @@
 <template>
   <div>
-    <ul v-if="videoTitle != null "
-     @click="selectMovie">
-      <img :src="tmbdimg" alt="image">
-      <h3>{{ videoTitle}}</h3>
-      <p>{{ videoDesc }}</p>
-    </ul>
-    <!-- <ul v-if="videoTitle == '어ㅏ어라어ㅏ럼낭러'">
-      <h1>데이터가 없습니다</h1>
-    </ul> -->
+    <h2 
+      @click="updateTodoStatus"
+      :class="{ 'is-completed': todo.isCompleted }"
+    >
+      {{ todo.title }}
+    </h2>
+    <button @click="deleteTodo">Delete</button>
   </div>
+
 </template>
 
 <script>
-
 export default {
-  name : 'WatchListItem',
-  data(){
-    return {
-      title12 : null
-    }
-  },
-  props:{
-    searchList: Object,
-  },
-  computed:{
-    videoTitle() {
-      console.log(this.searchList.title)
-      return this.searchList.title
-    },
-    videoDesc() {
-      return this.searchList.overview
-    },
-    // thumbUrl() {
-    //   return this.searchList.poster_path
-    // },
-    tmbdimg() {
-      return 'https://image.tmdb.org/t/p/w500/' + this.searchList.poster_path
-    },
+  name: 'WatchListItem',
+  props: {
+    todo: Object,
   },
   methods: {
-    selectMovie(){
-      this.$emit('select-movie', this.searchList)
-    }
-  },
+    deleteTodo() {
+      this.$store.dispatch('deleteTodo', this.todo)
+    },
+    updateTodoStatus() {
+      this.$store.dispatch('updateTodoStatus', this.todo)
+    },
+  }
 }
 </script>
 
+
 <style>
+  .is-completed {
+    text-decoration: line-through;
+  }
 
 </style>
