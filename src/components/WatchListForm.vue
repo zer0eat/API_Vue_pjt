@@ -7,8 +7,8 @@
 <script>
 
 export default {
-  name : 'WatchListForm'
-
+  name: 'WatchListForm',
+  
 }
 </script>
 
